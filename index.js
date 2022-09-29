@@ -1,7 +1,7 @@
 //alert('hello world')
 
-// let playerScore =0;
-// let computerScore =0;
+let playerScore =0;
+let computerScore =0;
 
 const getComputerChoice = () => {
 
@@ -24,27 +24,55 @@ const playerChoice = () => {
    return prompt('Choose your weapon').toLowerCase();
 }
 
+let playerSelection;
+let computerSelection;
+
 function playRound(playerSelection, computerSelection){
+    
+    playerSelection = playerChoice();
+    computerSelection = getComputerChoice();
 
     if(playerSelection === 'rock' && computerSelection === 'scissors'){
-        return 'Rock beats scissors. You win!'
+        return(
+            playerScore++, 
+            'Rock beats scissors. You win!'
+        )
     } 
     else if (playerSelection === 'paper' && computerSelection === 'rock'){
-        return 'Paper beats rock. You win!'
+        return(
+            playerScore++,
+            'Paper beats rock. You win!'
+        )
     } 
     else if (playerSelection === 'scissors' && computerSelection ==='paper'){
-        return 'Scissors beats paper. You win!'
+        return(
+            playerScore++,
+            'Scissors beats paper. You win!'
+        )
     }
     else if(computerSelection === 'rock' && playerSelection === 'scissors'){
-        return 'Rock beats scissors. You lose!'
+        return(
+            computerScore++,
+            'Rock beats scissors. You lose!'
+        )
     } 
     else if (computerSelection === 'paper' && playerSelection === 'rock'){
-        return 'Paper beats rock. You lose!'
+        return(
+            computerScore++,
+            'Paper beats rock. You lose!'
+        )
     } 
     else if (computerSelection === 'scissors' && playerSelection ==='paper'){
-        return 'Scissors beats paper. You lose!'
+        return(
+            computerScore++,
+            'Scissors beats paper. You lose!'
+        )
     } else if (playerSelection === computerSelection){
-        return 'Draw. Play again.'
+        return(
+            computerScore++,
+            playerScore++,
+            'Draw. Play again.'
+        )
     } else {
         return alert('Choose a valid selection')
     }
@@ -52,11 +80,17 @@ function playRound(playerSelection, computerSelection){
 }
 
 
-const computerSelection = getComputerChoice();
-const playerSelection = playerChoice();
+function play(){
 
+    for(let i=0; i<5; i++){
+       console.log(
+        playRound(playerSelection, computerSelection),
+        `\nPlayer score: ${playerScore}`, `Computer score: ${computerScore}` 
+       )  
+    }
+    const result = playerScore > computerScore
 
-for(let i=0; i<5; i++){
-    playRound(playerSelection, computerSelection)
+    result ? console.log('Player Won!') : console.log('Computer Won!')
 }
+play();
 
