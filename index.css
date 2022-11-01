@@ -41,13 +41,9 @@ p{
     padding: 1%;
 }
 
-.test {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
 
 .pressed {
     border:1px solid black;
 }
+
 
