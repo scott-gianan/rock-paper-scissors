@@ -1,96 +1,70 @@
-//alert('hello world')
-
 let playerScore =0;
 let computerScore =0;
+//let islevelStarted = false;
+
+let playerChoice = [];
+let computerChoice = [];
+
+
 
 const getComputerChoice = () => {
-
-    let computerChoice = Math.floor(Math.random() *3) +1
-    switch(computerChoice){
-        case 1:
-            return 'rock'
-            break;
-        case 2:
-            return 'paper'
-            break;
-        default: 
-            return 'scissors'
-            break;
-    }
-
+    const choice = ['rock','paper','scissors'];
+    let randomChoice = Math.round(Math.random()*2);
+    return computerChoice.push(choice[randomChoice]);
 }
-
-const playerChoice = () => {
-   return prompt('Choose your weapon').toLowerCase();
-}
-
-let playerSelection;
-let computerSelection;
-
-function playRound(playerSelection, computerSelection){
     
-    playerSelection = playerChoice();
-    computerSelection = getComputerChoice();
+    
+$('.choice').click((event)=> {
+    getComputerChoice();
+    playerChoice.push(event.target.alt);
+    console.log(`Player: ${playerChoice}`);
+    console.log(`Computer: ${computerChoice}`);
+})
 
-    if(playerSelection === 'rock' && computerSelection === 'scissors'){
-        return(
-            playerScore++, 
-            'Rock beats scissors. You win!'
-        )
-    } 
-    else if (playerSelection === 'paper' && computerSelection === 'rock'){
-        return(
-            playerScore++,
-            'Paper beats rock. You win!'
-        )
-    } 
-    else if (playerSelection === 'scissors' && computerSelection ==='paper'){
-        return(
-            playerScore++,
-            'Scissors beats paper. You win!'
-        )
-    }
-    else if(computerSelection === 'rock' && playerSelection === 'scissors'){
-        return(
-            computerScore++,
-            'Rock beats scissors. You lose!'
-        )
-    } 
-    else if (computerSelection === 'paper' && playerSelection === 'rock'){
-        return(
-            computerScore++,
-            'Paper beats rock. You lose!'
-        )
-    } 
-    else if (computerSelection === 'scissors' && playerSelection ==='paper'){
-        return(
-            computerScore++,
-            'Scissors beats paper. You lose!'
-        )
-    } else if (playerSelection === computerSelection){
-        return(
-            computerScore++,
-            playerScore++,
-            'Draw. Play again.'
-        )
-    } else {
-        return alert('Choose a valid selection')
-    }
 
+const play = () => {
+
+    let playerLastIndex = playerChoice[playerChoice.length-1];
+    let computerLastIndex = computerChoice[computerChoice.length-1];
+
+    if(playerLastIndex === 'rock' && computerLastIndex ==='scissors'){
+        playerScore++;
+        $('.result').text('You won!');
+        $('.player-score').text(`${playerScore}`);
+    }
+    else if(playerLastIndex === 'scissors' && computerLastIndex ==='paper'){
+        playerScore++;
+        $('.result').text('You won!');
+        $('.player-score').text(`${playerScore}`);
+    }
+    else if(playerLastIndex === 'paper' && computerLastIndex ==='rock'){
+        playerScore++;
+        $('.result').text('You won!');
+        $('.player-score').text(`${playerScore}`);
+    }
+    else if(computerLastIndex === 'rock' && playerLastIndex ==='scissors'){
+        computerScore++;
+        $('.result').text('computer won!');
+        $('.computer-score').text(`${computerScore}`);
+    }
+    else if(computerLastIndex === 'scissors' && playerLastIndex ==='paper'){
+        computerScore++;
+        $('.result').text('computer won!');
+        $('.computer-score').text(`${computerScore}`);
+    }
+    else if(computerLastIndex === 'paper' && playerLastIndex ==='rock'){
+        computerScore++;
+        $('.result').text('computer won!');
+        $('.computer-score').text(`${computerScore}`);
+    }
+    else if(computerLastIndex===playerLastIndex){
+        $('.result').text('Draw!');
+    }
 }
 
+$('button').click(play);
 
-function play(){
+const showComputerChoice = (choice) => {
 
-    for(let i=0; i<5; i++){
-       console.log(
-        playRound(playerSelection, computerSelection),
-        `\nPlayer score: ${playerScore}`, `Computer score: ${computerScore}` 
-       )  
-    }
-    const result = playerScore > computerScore
-
-    result ? console.log('Player Won!') : console.log('Computer Won!')
 }
-play();
 

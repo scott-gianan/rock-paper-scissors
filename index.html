@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <title>Rock-Paper-Scissors</title>
 </head>
 <body>
+    <h1 class="game-title">Rock Paper Scissors</h1>
+    <h2 class="result">Try to beat the computer</h2>
+    <div class="main-container">
+        <div class="player-container">
+            <h3 class="you">You</h3>
+            <h3>Score: <p class="player-score">0</p></h3>
+            <div class="choice-img">
+                <div class="choice img-paper">
+                    <img src="./images/paper.png" alt="paper" width="100" id="paper">
+                </div>
+                <div class="choice img-rock">
+                    <img src="./images/rock.png" id="rock" alt="rock" width="100">
+                </div>
+                <div class="choice img-scissors">
+                    <img src="./images/scissors.png" id="scissors" alt="scissors" width="100">
+                </div>
+
+            </div>
+        </div>
+    
+        <div class="computer-container">
+            <h3 class="computer">Computer</h3>
+            <h3>Score: <p class="computer-score">0</p> </h3>
+            <div class="choice img-scissors" >
+                <img src="./images/scissors.png" id="computer-choice" alt="scissors" width="100">
+            </div>
+        </div>
+    </div>
+
+    <button class="play">Play!</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="./index.js"></script>
 </body>
 </html>
