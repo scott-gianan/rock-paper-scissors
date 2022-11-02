@@ -19,9 +19,8 @@ $('.choice').click((event)=> {
     highlightPlayerChoice(option);
     getComputerChoice();
     adio_choose();
-    //console.log(option);
-    // console.log(`Player: ${playerChoice}`);
-    // console.log(`Computer: ${computerChoice}`);
+    // console.log(option);
+
 })
 
 const showComputerChoice = (choice) => {
@@ -36,10 +35,9 @@ const highlightPlayerChoice = (choice) => {
 }
 
 const play = () => {
-    checkScore();
     if(islevelStarted){
-        let playerLastIndex = playerChoice[playerChoice.length-1];
-        let computerLastIndex = computerChoice[computerChoice.length-1];
+        let playerLastIndex = playerChoice[0];
+        let computerLastIndex = computerChoice[0];
         
         if(playerLastIndex === 'rock' && computerLastIndex ==='scissors'){
             playerScore++;
@@ -88,31 +86,49 @@ const play = () => {
             showComputerChoice(computerLastIndex);
             $('.result').text('Draw!');
         }
+        checkScore();
     }
 }
 
 $('button').click(()=> {
     if(playerChoice.length===0 && computerChoice.length===0){
         audio_draw();
-        $('.result').text('Dear player, please select from one of the three option first!');
+        $('.result').text('Dear player, please select from one of the three options first').fadeOut(250).fadeIn(250);
     } else {
         play();
         setTimeout(() => {
             playerChoice=[];
+            computerChoice=[];
         }, 100);
     }
+    console.log(`Player: ${playerChoice}`);
+    console.log(`Computer: ${computerChoice}`);
 });
 
 const checkScore = () => {
     if(playerScore===5){
-        islevelStarted = false;
-        player_win();
-        $('.result').text('Congratulations! You beat the computer! Click anywhere to reset the game.').fadeOut(500).fadeIn(500);
+        setTimeout(() => {
+            player_win();
+            $('.result').text('Congratulations! You beat the computer! Click anywhere to reset the game.').fadeOut(500).fadeIn(500);
+            continue_game();
+        }, 500);
     }else if (computerScore===5){
-        islevelStarted = false;
-        player_lose();
-        $('.result').text('Computer won. Click anywhere to reset the game.').fadeOut(500).fadeIn(500);
+        setTimeout(() => {
+            player_lose();
+            $('.result').text('Computer won. Click anywhere to reset the game.').fadeOut(500).fadeIn(500);
+            continue_game();
+        }, 500);
     }
+}
+
+const continue_game = () => {
+    $(document).click(() => {
+        let reload = new Audio('./sounds/draw.mp3');
+        reload.play();
+        setTimeout(() => {
+            location.reload();
+        }, 500);
+    })
 }
 //Sound for losing a round:
 const audio_lost = () => {
@@ -145,13 +161,5 @@ const player_win = () => {
     player_win.play();
 }
 
-// const continue_game = () => {
-//     $(document).click(() => {
-//         islevelStarted = true;
-//         playerChoice = [];
-//         computerChoice = [];
-//         playerScore = 0;
-//         computerScore = 0;
-//     })
-// }
+
 
