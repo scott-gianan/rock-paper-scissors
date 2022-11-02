@@ -101,8 +101,8 @@ const playGame = () => {
                 computerChoice=[];
             }, 100);
         }
-        console.log(`Player: ${playerChoice}`);
-        console.log(`Computer: ${computerChoice}`);
+        // console.log(`Player: ${playerChoice}`);
+        // console.log(`Computer: ${computerChoice}`);
     });
 
     const checkScore = () => {
