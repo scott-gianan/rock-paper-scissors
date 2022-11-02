@@ -2,18 +2,32 @@
     padding:0;
     margin:0;
     box-sizing: border-box;
+    font-family: 'Odibee Sans', cursive;
 }
-
+body{
+    min-width: 100vw;
+}
 h1,h2 {
     text-align: center;
-    margin-top:1rem;
+    margin-top:2rem;
+}
+h1{
+    font-size: 3rem;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+h3{
+    font-size: 1.5rem;
 }
 
 .main-container{
     min-width: 100vw;
     display:flex;
     justify-content: center;
-    margin: 5% auto 0 auto;
+    margin: 2rem auto 0 auto;
     gap: 15%;
 }
 
@@ -35,15 +49,27 @@ p{
     display: inline;
 }
 
-.play {
-    display:block;
-    margin: 2.5% auto 0 auto;
-    padding: 1%;
-}
+
 
 
 .pressed {
     border:1px solid black;
 }
 
-
+.play{
+    display:block;
+    margin: 2.5% auto 0 auto;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 1px #2D2D2D;
+    width: 5rem;
+    height: 3rem;
+   }
+   .play:active{
+    transform: scale(0.95);
+   }
